@@ -46,8 +46,5 @@ CREATE TABLE Enstrumanfiyat (
   `fiyat` int(11) NOT NULL,
 
 
-END
-;;
-delimiter ;
 
 
