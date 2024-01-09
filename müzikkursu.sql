@@ -48,3 +48,66 @@ CREATE TABLE Enstrumanfiyat (
 
 
 
+    CREATE TABLE uye (
+    uyeID INT PRIMARY KEY AUTO_INCREMENT,
+    kullaniciadi VARCHAR(50) NOT NULL,
+    sifre VARCHAR(50) NOT NULL,
+    AD VARCHAR(100) NOT NULL
+
+
+CREATE TABLE Gonderiler (
+    GonderiID INT PRIMARY KEY AUTO_INCREMENT,
+    uyeID INT,
+    icerik TEXT NOT NULL,
+    Gonderitarihi TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (uyeID) REFERENCES uyeler(uyeID)
+
+
+
+CREATE TABLE takipci (
+    takipciID INT PRIMARY KEY AUTO_INCREMENT,
+    uyeID1 INT,
+    uyeID2 INT,
+    Status ENUM('beklemede', 'kabul', 'red') DEFAULT 'beklemede',
+    FOREIGN KEY (uyeID1) REFERENCES uyeler(uyeID),
+    FOREIGN KEY (uyeID2) REFERENCES uyeler(uyeID)
+
+
+
+CREATE TABLE yorumlar (
+    yorumID INT PRIMARY KEY AUTO_INCREMENT,
+    GonderiID INT,
+    uyeID INT,
+    icerik TEXT NOT NULL,
+    yorumtarihi TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (GonderiID) REFERENCES Gonderiler(GonderiID),
+    FOREIGN KEY (uyeID) REFERENCES uyeler(uyeID)
+
+
+
+
+CREATE TABLE begeniler (
+    begeniID INT PRIMARY KEY AUTO_INCREMENT,
+    GonderiID INT,
+    uyeID INT,
+    begenitarihi TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (GonderiID) REFERENCES Gonderiler(GonderiID),
+    FOREIGN KEY (uyeID) REFERENCES uyeler(uyeID)
+
+
+
+
+CREATE TABLE ozelsohbet (
+    sohbetID INT PRIMARY KEY AUTO_INCREMENT,
+    gonderenID INT,
+    aliciID INT,
+    mesaj TEXT NOT NULL,
+    gondermetarihi TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (gonderenID) REFERENCES uyeler(uyeID),
+    FOREIGN KEY (aliciID) REFERENCES uyeler(uyeID)
+
+
+
+
+
+
